@@ -140,7 +140,8 @@ resources:
                     - Key: Name
                       Value: CHILLNN ${self:provider.stage} Chillnn SFA
                 DistributionConfig:
-                    Aliases: ${self:custom.env.infra.${self:provider.stage}.CLOUDFRONT_ALIASES}
+                    Aliases:
+                        - ${self:custom.env.infra.${self:provider.stage}.CLOUDFRONT_ALIASES}
                     ViewerCertificate:
                         AcmCertificateArn: ${self:custom.env.infra.${self:provider.stage}.CLOUDFRONT_ALIAS_ACM_ARN}
                         SslSupportMethod: sni-only

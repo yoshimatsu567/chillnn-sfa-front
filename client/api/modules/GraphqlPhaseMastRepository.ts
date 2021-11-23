@@ -3,8 +3,12 @@ import { IPhaseMastRepository } from 'chillnn-sfa-abr/dist/entities/repositories
 import {
     AddPhaseMutation,
     AddPhaseMutationVariables,
+    DeletePhaseMutation,
+    DeletePhaseMutationVariables,
     FetchAllPhaseQuery,
     FetchAllPhaseTitleQuery,
+    FetchPhaseByPhaseIDQuery,
+    FetchPhaseByPhaseIDQueryVariables,
     FetchPhaseDataByClientIDAndPhaseDetailQuery,
     FetchPhaseDataByClientIDAndPhaseDetailQueryVariables,
     FetchPhaseDataByClientIDQuery,
@@ -39,6 +43,30 @@ class GraphqlPhaseMastRepository implements IPhaseMastRepository {
                 }
             )
         ).updatePhase
+    }
+
+    async deletePhase(phaseID: string): Promise<PhaseMast> {
+        return (
+            await callApi<DeletePhaseMutation, DeletePhaseMutationVariables>(
+                mutation.deletePhase,
+                {
+                    phaseID,
+                }
+            )
+        ).deletePhase
+    }
+
+    async fetchPhaseByPhaseID(phaseID: string): Promise<PhaseMast | null> {
+        return (
+            (
+                await callApi<
+                    FetchPhaseByPhaseIDQuery,
+                    FetchPhaseByPhaseIDQueryVariables
+                >(query.fetchPhaseByPhaseID, {
+                    phaseID,
+                })
+            ).fetchPhaseByPhaseID || null
+        )
     }
 
     async fetchPhaseDataByClientID(clientID: string): Promise<PhaseMast[]> {

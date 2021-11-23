@@ -1,13 +1,12 @@
 <template>
     <div class="app_input_container">
-        <div class="label" >{{ label }}</div>
-        <input v-model="localValue" :type="type" :placeholder="placeholder" :maxlength="maxLength" :max="max" />
+        <input v-model="localValue" :type="type" :placeholder="placeholder" :maxlength="maxLength" :max="max" @blur="$emit('blur', $event)" />
     </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 @Component({})
-export default class AppInput extends Vue {
+export default class AppSimpleInput extends Vue {
     @Prop({ required: true }) public value!: string | number
     @Prop({ default: () => 'text' }) public type!: string
     @Prop({ required: false }) public placeholder!: string | number
@@ -28,27 +27,14 @@ export default class AppInput extends Vue {
 <style lang="stylus" scoped>
 .app_input_container {
     width: 100%;
-
-    .label{
-        width: 100%;
-        margin-left: 7%;
-        font-size: 5px;
-        text-align: left;
-        color: $commentContentsColor
-    }
+    // height: 100%;
 
     input {
-        width: 80%;
-        // height: 100%;
         border: 1px solid $lightBorderColor;
         padding: 10px 20px;
         margin-top: 5px;
         border-radius: 5px;
-        background-color: $WHITECOLOR
-
-        &:hover{
-            background-color: $lightBorderColor    
-        }
+        background-color: #FFFFFF
 
         &:focus {
             outline: 0;
@@ -56,6 +42,11 @@ export default class AppInput extends Vue {
             border: 2px solid $CHILLNNBrightPinkColor;
             background-color: $WHITECOLOR;
         }
+
+        &:hover{
+            cursor: text;
+        }
+
     }
 
     input::-webkit-calendar-picker-indicator {

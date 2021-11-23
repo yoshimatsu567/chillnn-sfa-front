@@ -3,7 +3,7 @@
         <nuxt-link :to="{ name: 'index' }" tag="div" class="left_container">
             <!-- left -->
             <div class="logo">
-                <img src="~/assets/img/CHILLNNSFA.webp" alt="CHILLNN SFAのロゴ画像">
+                <img src="~/assets/img/CHILLNNSFA.png" alt="CHILLNN SFAのロゴ画像">
             </div>
         </nuxt-link>
 
@@ -13,36 +13,37 @@
                 tag="div"
                 class="navigation_child"
                 active-class="navigation_child_active"
+                style="text-decoration: line-through;"
             >
                 Client一覧
             </nuxt-link>
 
-            <nuxt-link
+            <!-- <nuxt-link
                 :to="{ name: 'client-register' }"
                 tag="div"
                 class="navigation_child"
                 active-class="navigation_child_active"
             >
                 Client登録
-            </nuxt-link>
+            </nuxt-link> -->
 
-            <nuxt-link
+            <!-- <nuxt-link
                 :to="{ name: 'phase-list' }"
                 tag="div"
                 class="navigation_child"
                 active-class="navigation_child_active"
             >
                 Phase一覧
-            </nuxt-link>
+            </nuxt-link> -->
 
-            <nuxt-link
+            <!-- <nuxt-link
                 :to="{ name: 'phase-register' }"
                 tag="div"
                 class="navigation_child"
                 active-class="navigation_child_active"
             >
                 Phase登録
-            </nuxt-link>
+            </nuxt-link> -->
 
             <nuxt-link
                 :to="{ name: 'user-userID', params: { userID: userModel.userID } }"
@@ -51,9 +52,7 @@
                 active-class="navigation_child_active"
 
             >
-                <!-- right -->
                 <div v-if="userModel.name" class="edit_button">{{ userModel.name }}さん<img v-if="userModel.name" src="~/assets/img/edit.svg" alt="設定のアイコン" class="icon"></div>
-                
             </nuxt-link>
         </div>
 
@@ -108,9 +107,9 @@ export default class AppHeader extends Vue {
     .header-right-wrapper{
         display: flex;
         align-items: center;
-        // text-align: right;
         height: 100%;
-        min-width: 500px;
+        // min-width: 500px;
+        min-width: 200px;
         justify-content: space-between;   
         font-size: 14px;
     }

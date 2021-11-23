@@ -6,24 +6,6 @@
     >
         <div class="inner">
             <slot />
-            <div class="label">担当</div>
-            <select style="width: 50%;" @blur="register(selectedValue)" v-model="selectedValue" name="clientModel.chargeUserID" >
-                <!-- <option disabled>{{ selectedValue }}</option> -->
-                <option v-for="userData in userModelList" :key="userData.userID" :value="userData.userID">{{ userData.name }}</option>
-            </select>
-            <app-input label="会社名" :value="client.companyName" v-model="client.companyName" />
-            <app-input label="施設名" :value="client.accommodationName" v-model="client.accommodationName" />
-            <app-input label="担当者" :value="client.clientUserName" v-model="client.clientUserName"/>
-            <app-input label="都道府県" :value="client.prefecture" v-model="client.prefecture"/>
-            <app-input label="電話番号" :value="client.clientPhoneNumber" v-model="client.clientPhoneNumber"/>
-            <app-input label="メールアドレス" :value="client.clientEmail" v-model="client.clientEmail"/>
-            <!-- <app-input label="アポ" :value="client.appointmentStatus" v-model="client.appointmentStatus"/> -->
-            <app-input label="過去ステータス" :value="client.pastStatus" v-model="client.pastStatus"/>
-            <app-input label="新規ステータス" :value="client.newStatus" v-model="client.newStatus"/>
-            <app-input label="HPのポテンシャル" :value="client.homePagePotential" v-model="client.homePagePotential"/>
-            <app-input label="予想流通額" :value="client.expectedSalesAmount" v-model="client.expectedSalesAmount"/>
-            <app-input label="所要時間" :value="client.requiredTime" v-model="client.requiredTime" placeholder="10時間"/>
-            <app-primary-button class="button_style" @click="register">更新</app-primary-button>
         </div>
     </div>
 </template>
@@ -43,51 +25,14 @@ import { ClientModel } from 'chillnn-sfa-abr/dist/entities/models/modules/client
     }
 })
 export default class AppModal extends Vue {
-    @Prop({ required: true }) propValue!: boolean
-    @Prop({ required: true }) client!: ClientModel
-
-    public chargeUserNameValue: string = ''
-    public userModel: UserMast | null = null
-    public userModelList: UserMast[] = []
-    public selectValue: string = ''
+    @Prop({ required: false }) value!: boolean
     
     public get localValue() {
-        return this.propValue
+        return this.value
     }
 
     public set localValue(input: boolean) {
         this.$emit('input', input)
-    }
-
-    public get selectedValue() {
-        return this.selectValue;
-    }
-
-    public set selectedValue(select: string) {
-        this.selectValue = select
-        this.$emit('selected', select)
-    }
-
-    @AsyncLoadingAndErrorHandle()
-    public async created() {
-        this.userModelList = await userInteractor.fetchAllUser()
-        if(this.client && this.client.chargeUserID !== ''){
-            this.userModel = await userInteractor.fetchUserModelByUserID(this.client.chargeUserID)
-            this.selectedValue = this.userModel.name
-        }
-    }
-
-    // 担当単体でもAPI叩いてる。分けてた方がいい
-    @AsyncLoadingAndErrorHandle()
-    public async register(selectedUserID?: string){
-        if(this.client){
-            if(selectedUserID){
-                this.client.chargeUserID = selectedUserID
-            }
-            await this.client.register()
-            .then(() => window.alert('更新しました。'))
-            .catch(() => window.alert('更新に失敗しました。もう一度試してみてください。'))
-        }
     }
 }
 </script>
@@ -102,7 +47,7 @@ export default class AppModal extends Vue {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba( 0, 0, 0, 0.1);
     // overflow-x: scroll;
 
     .inner {

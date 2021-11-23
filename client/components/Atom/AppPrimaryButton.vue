@@ -31,10 +31,9 @@ export default class AppPrimaryButton extends Vue {
         color: #f8fbf8
 
         &:active {
-            -webkit-transform: translate(0,2px);
-            -moz-transform: translate(0,2px);
-            transform: translate(0,2px);
-            border-bottom: none;
+            -webkit-transform: translate(0, 2px);
+            -moz-transform: translate(0, 2px);
+            transform: translate(0, 2px);
         }
 
         @media only screen and (max-width: $spSize) {

@@ -1,5 +1,5 @@
 #!/bin/sh
-s3Name=chillnn-sfa-front-nuxt-yoshimatsu # ここ最終的に変更する
+s3Name=chillnn-sfa
 profile=yoshimatsu_admin
 
 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')

@@ -4,25 +4,17 @@
             <div>Phase : {{ phase.phaseNumber }} {{ phase.phaseDetail }}</div>
             <div class="phaseDate_style">{{ phase.phaseDate }}</div>
         </div>
-        <!-- <div class="phase_child" >
-            <div class="phaseDate_style">
-                {{ phaseDataList.phaseDate }}
-            </div>
-            <div>
-                Phase : {{ phaseDataList.phaseNumber }} {{ phaseDataList.phasenumber }}
-            </div>
-        </div> -->
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { ClientModel } from 'chillnn-sfa-abr/dist/entities/models/modules/clientModel'
 import { ClientMast } from 'chillnn-sfa-abr'
+import { ClientModel } from 'chillnn-sfa-abr/dist/entities/models/modules/clientModel'
 import { PhaseModel } from 'chillnn-sfa-abr/dist/entities/models/modules/phaseModel'
+import { phaseInteractor } from '~/api'
 import { AsyncLoadingAndErrorHandle } from '~/util/decorator/baseDecorator'
 import PhaseModal from '../../../pages/client/phaseModal.vue'
-import { phaseInteractor } from '~/api'
 
 @Component({
     components: {
@@ -43,7 +35,7 @@ export default class PhaseList extends Vue {
     public async created() {
         // this.phaseDataList = await this.fetchPhaseDataByClientIDAsync(this.client.clientID)
         this.phaseDataList = await phaseInteractor.fetchPhaseDataByClientID(this.client.clientID)
-        console.log(this.phaseDataList[0])
+        // console.log(this.phaseDataList[0])
     }
 
     @AsyncLoadingAndErrorHandle()

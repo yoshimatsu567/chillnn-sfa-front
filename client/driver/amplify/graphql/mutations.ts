@@ -34,11 +34,12 @@ export const addEvent = /* GraphQL */ `
       createdAt
       deletedAt
       editedUserID
+      eventCountNumber
       eventDate
       eventDetail
       eventID
       eventMemo
-      eventNumber
+      eventNumberStatus
       eventStatus
       eventTerm
       updatedAt
@@ -59,6 +60,57 @@ export const addPhase = /* GraphQL */ `
       phaseStatus
       phaseTerm
       updatedAt
+    }
+  }
+`;
+export const deleteEvent = /* GraphQL */ `
+  mutation DeleteEvent($eventID: ID!) {
+    deleteEvent(eventID: $eventID) {
+      clientID
+      createdAt
+      deletedAt
+      editedUserID
+      eventCountNumber
+      eventDate
+      eventDetail
+      eventID
+      eventMemo
+      eventNumberStatus
+      eventStatus
+      eventTerm
+      updatedAt
+    }
+  }
+`;
+export const deletePhase = /* GraphQL */ `
+  mutation DeletePhase($phaseID: ID!) {
+    deletePhase(phaseID: $phaseID) {
+      clientID
+      createdAt
+      deletedAt
+      editedUserID
+      phaseDate
+      phaseDetail
+      phaseID
+      phaseNumber
+      phaseStatus
+      phaseTerm
+      updatedAt
+    }
+  }
+`;
+export const deleteUserMast = /* GraphQL */ `
+  mutation DeleteUserMast($userID: ID!) {
+    deleteUserMast(userID: $userID) {
+      createdAt
+      deletedAt
+      email
+      jobTitleName
+      name
+      phoneNumber
+      updatedAt
+      userID
+      userStatus
     }
   }
 `;
@@ -94,11 +146,12 @@ export const updateEvent = /* GraphQL */ `
       createdAt
       deletedAt
       editedUserID
+      eventCountNumber
       eventDate
       eventDetail
       eventID
       eventMemo
-      eventNumber
+      eventNumberStatus
       eventStatus
       eventTerm
       updatedAt

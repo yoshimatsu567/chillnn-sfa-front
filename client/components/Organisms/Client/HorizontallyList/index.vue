@@ -18,7 +18,7 @@ export default class ClientHorizontallyListChargeUserName extends Vue{
     @AsyncLoadingAndErrorHandle()
     async created() {
         if(this.chargeUserID !== ''){
-            this.userModel = await userInteractor.fetchUserModelByUserID(this.chargeUserID)
+            this.userModel = await userInteractor.fetchUserMastByUserID(this.chargeUserID)
         }
     }
 }

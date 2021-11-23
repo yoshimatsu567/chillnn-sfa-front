@@ -3,6 +3,7 @@
         v-show="localValue"
         class="modal_wrapper"
         @click.self="localValue = false"
+        v-if="client !== null"
     >
         <div class="inner">
             <slot />

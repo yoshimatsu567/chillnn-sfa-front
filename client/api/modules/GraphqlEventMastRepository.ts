@@ -2,7 +2,11 @@ import { EventMast } from 'chillnn-sfa-abr'
 import {
     AddEventMutation,
     AddEventMutationVariables,
+    DeleteEventMutation,
+    DeleteEventMutationVariables,
     FetchAllEventQuery,
+    FetchEventByEventIDQuery,
+    FetchEventByEventIDQueryVariables,
     FetchEventsByClientIDQuery,
     FetchEventsByClientIDQueryVariables,
     FetchEventsByEditedUserIDQuery,
@@ -38,7 +42,31 @@ class GraphqlEventMastRepository implements IEventMastRepository {
         ).updateEvent
     }
 
-    async fetchEventsByClientID(clientID: string): Promise<EventMast[]> {
+    async deleteEvent(eventID: string): Promise<EventMast> {
+        return (
+            await callApi<DeleteEventMutation, DeleteEventMutationVariables>(
+                mutation.deleteEvent,
+                {
+                    eventID,
+                }
+            )
+        ).deleteEvent
+    }
+
+    async fetchEventByEventID(eventID: string): Promise<EventMast | null> {
+        return (
+            (
+                await callApi<
+                    FetchEventByEventIDQuery,
+                    FetchEventByEventIDQueryVariables
+                >(query.fetchEventByEventID, {
+                    eventID,
+                })
+            ).fetchEventByEventID || null
+        )
+    }
+
+    async fetchEventsByClientID(clientID: string): Promise<any> {
         return (
             await callApi<
                 FetchEventsByClientIDQuery,

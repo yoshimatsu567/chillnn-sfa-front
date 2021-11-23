@@ -48,39 +48,48 @@ export type ClientMast = {
 };
 
 export type EventMastInput = {
-  clientID?: string | null,
+  clientID: string,
   createdAt: number,
   deletedAt?: number | null,
   editedUserID?: string | null,
+  eventCountNumber: number,
   eventDate?: string | null,
   eventDetail: string,
   eventID: string,
   eventMemo?: string | null,
-  eventNumber: number,
-  eventStatus: string,
+  eventNumberStatus: number,
+  eventStatus: EVENT_STATUS,
   eventTerm?: string | null,
   updatedAt: number,
 };
 
+export enum EVENT_STATUS {
+  CONTACT = "CONTACT",
+  DEAD = "DEAD",
+  REACTION = "REACTION",
+}
+
+
 export type EventMast = {
   __typename: "EventMast",
-  clientID?: string | null,
+  clientID: string,
   createdAt: number,
   deletedAt?: number | null,
   editedUserID?: string | null,
+  eventCountNumber: number,
   eventDate?: string | null,
   eventDetail: string,
   eventID: string,
   eventMemo?: string | null,
-  eventNumber: number,
-  eventStatus: string,
+  eventNumberStatus: number,
+  eventStatus: EVENT_STATUS,
   eventTerm?: string | null,
   updatedAt: number,
 };
 
 export type PhaseMastInput = {
   clientID?: string | null,
-  createdAt: number,
+  createdAt?: number | null,
   deletedAt?: number | null,
   editedUserID?: string | null,
   phaseDate?: string | null,
@@ -89,7 +98,7 @@ export type PhaseMastInput = {
   phaseNumber: number,
   phaseStatus: PHASE_STATUS,
   phaseTerm?: string | null,
-  updatedAt: number,
+  updatedAt?: number | null,
 };
 
 export enum PHASE_STATUS {
@@ -102,7 +111,7 @@ export enum PHASE_STATUS {
 export type PhaseMast = {
   __typename: "PhaseMast",
   clientID?: string | null,
-  createdAt: number,
+  createdAt?: number | null,
   deletedAt?: number | null,
   editedUserID?: string | null,
   phaseDate?: string | null,
@@ -111,10 +120,11 @@ export type PhaseMast = {
   phaseNumber: number,
   phaseStatus: PHASE_STATUS,
   phaseTerm?: string | null,
-  updatedAt: number,
+  updatedAt?: number | null,
 };
 
-export type UserMastInput = {
+export type UserMast = {
+  __typename: "UserMast",
   createdAt: number,
   deletedAt?: number | null,
   email: string,
@@ -126,8 +136,7 @@ export type UserMastInput = {
   userStatus: string,
 };
 
-export type UserMast = {
-  __typename: "UserMast",
+export type UserMastInput = {
   createdAt: number,
   deletedAt?: number | null,
   email: string,
@@ -181,16 +190,17 @@ export type AddEventMutationVariables = {
 export type AddEventMutation = {
   addEvent:  {
     __typename: "EventMast",
-    clientID?: string | null,
+    clientID: string,
     createdAt: number,
     deletedAt?: number | null,
     editedUserID?: string | null,
+    eventCountNumber: number,
     eventDate?: string | null,
     eventDetail: string,
     eventID: string,
     eventMemo?: string | null,
-    eventNumber: number,
-    eventStatus: string,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
     eventTerm?: string | null,
     updatedAt: number,
   },
@@ -204,7 +214,7 @@ export type AddPhaseMutation = {
   addPhase:  {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -213,7 +223,70 @@ export type AddPhaseMutation = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
+    updatedAt?: number | null,
+  },
+};
+
+export type DeleteEventMutationVariables = {
+  eventID: string,
+};
+
+export type DeleteEventMutation = {
+  deleteEvent:  {
+    __typename: "EventMast",
+    clientID: string,
+    createdAt: number,
+    deletedAt?: number | null,
+    editedUserID?: string | null,
+    eventCountNumber: number,
+    eventDate?: string | null,
+    eventDetail: string,
+    eventID: string,
+    eventMemo?: string | null,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
+    eventTerm?: string | null,
     updatedAt: number,
+  },
+};
+
+export type DeletePhaseMutationVariables = {
+  phaseID: string,
+};
+
+export type DeletePhaseMutation = {
+  deletePhase:  {
+    __typename: "PhaseMast",
+    clientID?: string | null,
+    createdAt?: number | null,
+    deletedAt?: number | null,
+    editedUserID?: string | null,
+    phaseDate?: string | null,
+    phaseDetail: string,
+    phaseID: string,
+    phaseNumber: number,
+    phaseStatus: PHASE_STATUS,
+    phaseTerm?: string | null,
+    updatedAt?: number | null,
+  },
+};
+
+export type DeleteUserMastMutationVariables = {
+  userID: string,
+};
+
+export type DeleteUserMastMutation = {
+  deleteUserMast:  {
+    __typename: "UserMast",
+    createdAt: number,
+    deletedAt?: number | null,
+    email: string,
+    jobTitleName?: string | null,
+    name: string,
+    phoneNumber?: string | null,
+    updatedAt: number,
+    userID: string,
+    userStatus: string,
   },
 };
 
@@ -253,16 +326,17 @@ export type UpdateEventMutationVariables = {
 export type UpdateEventMutation = {
   updateEvent:  {
     __typename: "EventMast",
-    clientID?: string | null,
+    clientID: string,
     createdAt: number,
     deletedAt?: number | null,
     editedUserID?: string | null,
+    eventCountNumber: number,
     eventDate?: string | null,
     eventDetail: string,
     eventID: string,
     eventMemo?: string | null,
-    eventNumber: number,
-    eventStatus: string,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
     eventTerm?: string | null,
     updatedAt: number,
   },
@@ -276,7 +350,7 @@ export type UpdatePhaseMutation = {
   updatePhase:  {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -285,7 +359,7 @@ export type UpdatePhaseMutation = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
-    updatedAt: number,
+    updatedAt?: number | null,
   },
 };
 
@@ -306,6 +380,35 @@ export type UpdateUserMastMutation = {
     userID: string,
     userStatus: string,
   },
+};
+
+export type DeleteClientQueryVariables = {
+  clientID: string,
+};
+
+export type DeleteClientQuery = {
+  deleteClient?:  {
+    __typename: "ClientMast",
+    accommodationName: string,
+    appointmentStatus?: string | null,
+    chargeUserID?: string | null,
+    clientEmail: string,
+    clientID: string,
+    clientPhoneNumber?: string | null,
+    clientUserName?: string | null,
+    companyName?: string | null,
+    createdAt: number,
+    deletedAt?: number | null,
+    expectedSalesAmount?: string | null,
+    homePagePotential?: string | null,
+    newStatus?: string | null,
+    pastStatus?: string | null,
+    phaseDetailStatus?: string | null,
+    phaseNumberStatus?: number | null,
+    prefecture?: string | null,
+    requiredTime?: string | null,
+    updatedAt: number,
+  } | null,
 };
 
 export type FetchAllClientQuery = {
@@ -336,16 +439,17 @@ export type FetchAllClientQuery = {
 export type FetchAllEventQuery = {
   fetchAllEvent:  Array< {
     __typename: "EventMast",
-    clientID?: string | null,
+    clientID: string,
     createdAt: number,
     deletedAt?: number | null,
     editedUserID?: string | null,
+    eventCountNumber: number,
     eventDate?: string | null,
     eventDetail: string,
     eventID: string,
     eventMemo?: string | null,
-    eventNumber: number,
-    eventStatus: string,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
     eventTerm?: string | null,
     updatedAt: number,
   } >,
@@ -355,7 +459,7 @@ export type FetchAllPhaseQuery = {
   fetchAllPhase:  Array< {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -364,7 +468,7 @@ export type FetchAllPhaseQuery = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
-    updatedAt: number,
+    updatedAt?: number | null,
   } >,
 };
 
@@ -372,7 +476,7 @@ export type FetchAllPhaseTitleQuery = {
   fetchAllPhaseTitle:  Array< {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -381,7 +485,7 @@ export type FetchAllPhaseTitleQuery = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
-    updatedAt: number,
+    updatedAt?: number | null,
   } >,
 };
 
@@ -492,7 +596,7 @@ export type FetchClientsByPhaseDetailStatusQueryVariables = {
 };
 
 export type FetchClientsByPhaseDetailStatusQuery = {
-  fetchClientsByPhaseDetailStatus:  Array< {
+  fetchClientsByPhaseDetailStatus?:  Array< {
     __typename: "ClientMast",
     accommodationName: string,
     appointmentStatus?: string | null,
@@ -513,36 +617,7 @@ export type FetchClientsByPhaseDetailStatusQuery = {
     prefecture?: string | null,
     requiredTime?: string | null,
     updatedAt: number,
-  } >,
-};
-
-export type FetchClientsByPhaseNumberStatusQueryVariables = {
-  phaseNumber: number,
-};
-
-export type FetchClientsByPhaseNumberStatusQuery = {
-  fetchClientsByPhaseNumberStatus:  Array< {
-    __typename: "ClientMast",
-    accommodationName: string,
-    appointmentStatus?: string | null,
-    chargeUserID?: string | null,
-    clientEmail: string,
-    clientID: string,
-    clientPhoneNumber?: string | null,
-    clientUserName?: string | null,
-    companyName?: string | null,
-    createdAt: number,
-    deletedAt?: number | null,
-    expectedSalesAmount?: string | null,
-    homePagePotential?: string | null,
-    newStatus?: string | null,
-    pastStatus?: string | null,
-    phaseDetailStatus?: string | null,
-    phaseNumberStatus?: number | null,
-    prefecture?: string | null,
-    requiredTime?: string | null,
-    updatedAt: number,
-  } >,
+  } | null > | null,
 };
 
 export type FetchClientsByPhaseStatusQueryVariables = {
@@ -574,26 +649,50 @@ export type FetchClientsByPhaseStatusQuery = {
   } >,
 };
 
+export type FetchEventByEventIDQueryVariables = {
+  eventID: string,
+};
+
+export type FetchEventByEventIDQuery = {
+  fetchEventByEventID?:  {
+    __typename: "EventMast",
+    clientID: string,
+    createdAt: number,
+    deletedAt?: number | null,
+    editedUserID?: string | null,
+    eventCountNumber: number,
+    eventDate?: string | null,
+    eventDetail: string,
+    eventID: string,
+    eventMemo?: string | null,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
+    eventTerm?: string | null,
+    updatedAt: number,
+  } | null,
+};
+
 export type FetchEventsByClientIDQueryVariables = {
   clientID: string,
 };
 
 export type FetchEventsByClientIDQuery = {
-  fetchEventsByClientID:  Array< {
+  fetchEventsByClientID?:  Array< {
     __typename: "EventMast",
-    clientID?: string | null,
+    clientID: string,
     createdAt: number,
     deletedAt?: number | null,
     editedUserID?: string | null,
+    eventCountNumber: number,
     eventDate?: string | null,
     eventDetail: string,
     eventID: string,
     eventMemo?: string | null,
-    eventNumber: number,
-    eventStatus: string,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
     eventTerm?: string | null,
     updatedAt: number,
-  } >,
+  } | null > | null,
 };
 
 export type FetchEventsByEditedUserIDQueryVariables = {
@@ -603,16 +702,17 @@ export type FetchEventsByEditedUserIDQueryVariables = {
 export type FetchEventsByEditedUserIDQuery = {
   fetchEventsByEditedUserID:  Array< {
     __typename: "EventMast",
-    clientID?: string | null,
+    clientID: string,
     createdAt: number,
     deletedAt?: number | null,
     editedUserID?: string | null,
+    eventCountNumber: number,
     eventDate?: string | null,
     eventDetail: string,
     eventID: string,
     eventMemo?: string | null,
-    eventNumber: number,
-    eventStatus: string,
+    eventNumberStatus: number,
+    eventStatus: EVENT_STATUS,
     eventTerm?: string | null,
     updatedAt: number,
   } >,
@@ -633,15 +733,15 @@ export type FetchMyUserMastQuery = {
   } | null,
 };
 
-export type FetchPhaseDataByClientIDQueryVariables = {
-  clientID: string,
+export type FetchPhaseByPhaseIDQueryVariables = {
+  phaseID: string,
 };
 
-export type FetchPhaseDataByClientIDQuery = {
-  fetchPhaseDataByClientID:  Array< {
+export type FetchPhaseByPhaseIDQuery = {
+  fetchPhaseByPhaseID?:  {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -650,7 +750,28 @@ export type FetchPhaseDataByClientIDQuery = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
-    updatedAt: number,
+    updatedAt?: number | null,
+  } | null,
+};
+
+export type FetchPhaseDataByClientIDQueryVariables = {
+  clientID: string,
+};
+
+export type FetchPhaseDataByClientIDQuery = {
+  fetchPhaseDataByClientID:  Array< {
+    __typename: "PhaseMast",
+    clientID?: string | null,
+    createdAt?: number | null,
+    deletedAt?: number | null,
+    editedUserID?: string | null,
+    phaseDate?: string | null,
+    phaseDetail: string,
+    phaseID: string,
+    phaseNumber: number,
+    phaseStatus: PHASE_STATUS,
+    phaseTerm?: string | null,
+    updatedAt?: number | null,
   } >,
 };
 
@@ -663,7 +784,7 @@ export type FetchPhaseDataByClientIDAndPhaseDetailQuery = {
   fetchPhaseDataByClientIDAndPhaseDetail?:  {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -672,7 +793,7 @@ export type FetchPhaseDataByClientIDAndPhaseDetailQuery = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
-    updatedAt: number,
+    updatedAt?: number | null,
   } | null,
 };
 
@@ -684,7 +805,7 @@ export type FetchPhaseDataByEditedUserIDQuery = {
   fetchPhaseDataByEditedUserID:  Array< {
     __typename: "PhaseMast",
     clientID?: string | null,
-    createdAt: number,
+    createdAt?: number | null,
     deletedAt?: number | null,
     editedUserID?: string | null,
     phaseDate?: string | null,
@@ -693,7 +814,7 @@ export type FetchPhaseDataByEditedUserIDQuery = {
     phaseNumber: number,
     phaseStatus: PHASE_STATUS,
     phaseTerm?: string | null,
-    updatedAt: number,
+    updatedAt?: number | null,
   } >,
 };
 

@@ -56,7 +56,7 @@ export default class ListPage extends Vue {
         if(this.phaseModel){
             await this.phaseModel.register()
             .then(() => window.alert("登録できました"))
-            .catch((e) => window.alert('失敗しました'))
+            .catch((e) => window.alert(e))
             this.phaseModel =  await phaseInteractor.createNewPhaseTitle()
         }
     }

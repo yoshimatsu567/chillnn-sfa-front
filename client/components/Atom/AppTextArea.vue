@@ -1,19 +1,21 @@
 <template>
-    <div class="app_input_container">
-        <div class="label" >{{ label }}</div>
-        <input v-model="localValue" :type="type" :placeholder="placeholder" :maxlength="maxLength" :max="max" />
+    <div class="app_textarea_container">
+        <!-- <div class="label" >{{ label }}</div> -->
+        <textarea v-model="localValue" :type="type" :placeholder="placeholder" :maxlength="maxLength" :rows="rows" :cols="cols" :autofocus="false" />
     </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 @Component({})
-export default class AppInput extends Vue {
+export default class AppTextArea extends Vue {
     @Prop({ required: true }) public value!: string | number
     @Prop({ default: () => 'text' }) public type!: string
     @Prop({ required: false }) public placeholder!: string | number
     @Prop({ required: false }) public label!: string | number
     @Prop({ required: false }) maxLength!: number
-    @Prop({ required: false }) max!: number
+    @Prop({ required: true }) rows!: number
+    @Prop({ required: true }) cols!: number
+    @Prop({ required: true }) autofocus!: boolean
 
 
     public get localValue() {
@@ -26,29 +28,26 @@ export default class AppInput extends Vue {
 }
 </script>
 <style lang="stylus" scoped>
-.app_input_container {
+.app_textarea_container {
     width: 100%;
 
-    .label{
-        width: 100%;
-        margin-left: 7%;
-        font-size: 5px;
-        text-align: left;
-        color: $commentContentsColor
-    }
+    // .label{
+    //     width: 100%;
+    //     margin-left: 7%;
+    //     font-size: 5px;
+    //     text-align: left;
+    //     color: $commentContentsColor
+    // }
 
-    input {
-        width: 80%;
+    textarea {
+        // width: 80%;
         // height: 100%;
+        text-align: center;
         border: 1px solid $lightBorderColor;
         padding: 10px 20px;
         margin-top: 5px;
         border-radius: 5px;
-        background-color: $WHITECOLOR
-
-        &:hover{
-            background-color: $lightBorderColor    
-        }
+        resize: none;
 
         &:focus {
             outline: 0;

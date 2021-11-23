@@ -3,6 +3,10 @@ import { IClientMastRepository } from 'chillnn-sfa-abr/dist/entities/repositorie
 import {
     AddClientMutation,
     AddClientMutationVariables,
+    DeleteClientQuery,
+    DeleteClientQueryVariables,
+    // DeleteClientMutation,
+    // DeleteClientMutationVariables,
     FetchAllClientQuery,
     FetchClientByChargeUserIDQuery,
     FetchClientByChargeUserIDQueryVariables,
@@ -12,8 +16,6 @@ import {
     FetchClientsByContentSearchQueryVariables,
     FetchClientsByPhaseDetailStatusQuery,
     FetchClientsByPhaseDetailStatusQueryVariables,
-    FetchClientsByPhaseNumberStatusQuery,
-    FetchClientsByPhaseNumberStatusQueryVariables,
     FetchClientsByPhaseStatusQuery,
     FetchClientsByPhaseStatusQueryVariables,
     UpdateClientMutation,
@@ -44,6 +46,17 @@ class GraphqlClientMastRepository implements IClientMastRepository {
                 }
             )
         ).updateClient
+    }
+
+    async deleteClient(clientID: string): Promise<any> {
+        return (
+            await callApi<DeleteClientQuery, DeleteClientQueryVariables>(
+                query.deleteClient,
+                {
+                    clientID,
+                }
+            )
+        ).deleteClient
     }
 
     async fetchAllClient(): Promise<ClientMast[]> {
@@ -103,29 +116,17 @@ class GraphqlClientMastRepository implements IClientMastRepository {
             })
         ).fetchClientsByPhaseStatus
     }
-    async fetchClientsByPhaseNumberStatus(
-        phaseNumber: number
-    ): Promise<ClientMast[]> {
+    async fetchClientsByPhaseDetailStatus(phaseDetail: string): Promise<any> {
         return (
-            await callApi<
-                FetchClientsByPhaseNumberStatusQuery,
-                FetchClientsByPhaseNumberStatusQueryVariables
-            >(query.fetchClientsByPhaseNumberStatus, {
-                phaseNumber,
-            })
-        ).fetchClientsByPhaseNumberStatus
-    }
-    async fetchClientsByPhaseDetailStatus(
-        phaseDetail: string
-    ): Promise<ClientMast[]> {
-        return (
-            await callApi<
-                FetchClientsByPhaseDetailStatusQuery,
-                FetchClientsByPhaseDetailStatusQueryVariables
-            >(query.fetchClientsByPhaseDetailStatus, {
-                phaseDetail,
-            })
-        ).fetchClientsByPhaseDetailStatus
+            (
+                await callApi<
+                    FetchClientsByPhaseDetailStatusQuery,
+                    FetchClientsByPhaseDetailStatusQueryVariables
+                >(query.fetchClientsByPhaseDetailStatus, {
+                    phaseDetail,
+                })
+            ).fetchClientsByPhaseDetailStatus || null
+        )
     }
 }
 

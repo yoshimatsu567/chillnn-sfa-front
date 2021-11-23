@@ -166,7 +166,6 @@ import { UserModel } from 'chillnn-sfa-abr/dist/entities/models/modules/userMode
 import ClientHorizontallyListChargeUserName from '../../components/Organisms/Client/HorizontallyList/index.vue'
 import AppModal from '../../components/Organisms/Common/AppModal/index.vue'
 import AppInput from '../../components/Atom/AppInput.vue'
-import ClientModal from './modal.vue'
 import { PhaseModel } from 'chillnn-sfa-abr/dist/entities/models/modules/phaseModel'
 import AppPrimaryButton from '../../components/Atom/AppPrimaryButton.vue'
 import PhaseModal from './phaseModal.vue'
@@ -177,7 +176,6 @@ import PhaseList from '../../components/Organisms/Phase/PhaseList.vue'
         ClientHorizontallyListChargeUserName,
         AppModal,
         AppInput,
-        ClientModal,
         AppPrimaryButton,
         PhaseModal,
         PhaseList,
@@ -311,7 +309,7 @@ export default class ListPage extends Vue {
         .first_row_phase_class{
             border-bottom: 1px solid $lightBorderColor
             background-color: $CHILLNNBrightPinkColor;
-            color: #ffffff;
+            color: $WHITECOLOR;
             font-size: 10px;
             min-width: 50px;
             max-width: none;
@@ -345,7 +343,7 @@ export default class ListPage extends Vue {
             outline: 0;
             box-shadow: none;
             border: 2px solid $CHILLNNBrightPinkColor;
-            background-color: #ffffff;
+            background-color: $WHITECOLOR;
         }
     }
 }
@@ -353,7 +351,7 @@ export default class ListPage extends Vue {
 th{
     border-bottom: 1px solid $lightBorderColor
     background-color: $CHILLNNBrightPinkColor;
-    color: #ffffff;
+    color: $WHITECOLOR;
     font-size: 10px;
     min-width: 50px;
     max-width: 200px;

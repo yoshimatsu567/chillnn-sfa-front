@@ -2,6 +2,31 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const deleteClient = /* GraphQL */ `
+  query DeleteClient($clientID: ID!) {
+    deleteClient(clientID: $clientID) {
+      accommodationName
+      appointmentStatus
+      chargeUserID
+      clientEmail
+      clientID
+      clientPhoneNumber
+      clientUserName
+      companyName
+      createdAt
+      deletedAt
+      expectedSalesAmount
+      homePagePotential
+      newStatus
+      pastStatus
+      phaseDetailStatus
+      phaseNumberStatus
+      prefecture
+      requiredTime
+      updatedAt
+    }
+  }
+`;
 export const fetchAllClient = /* GraphQL */ `
   query FetchAllClient {
     fetchAllClient {
@@ -34,11 +59,12 @@ export const fetchAllEvent = /* GraphQL */ `
       createdAt
       deletedAt
       editedUserID
+      eventCountNumber
       eventDate
       eventDetail
       eventID
       eventMemo
-      eventNumber
+      eventNumberStatus
       eventStatus
       eventTerm
       updatedAt
@@ -194,31 +220,6 @@ export const fetchClientsByPhaseDetailStatus = /* GraphQL */ `
     }
   }
 `;
-export const fetchClientsByPhaseNumberStatus = /* GraphQL */ `
-  query FetchClientsByPhaseNumberStatus($phaseNumber: Int!) {
-    fetchClientsByPhaseNumberStatus(phaseNumber: $phaseNumber) {
-      accommodationName
-      appointmentStatus
-      chargeUserID
-      clientEmail
-      clientID
-      clientPhoneNumber
-      clientUserName
-      companyName
-      createdAt
-      deletedAt
-      expectedSalesAmount
-      homePagePotential
-      newStatus
-      pastStatus
-      phaseDetailStatus
-      phaseNumberStatus
-      prefecture
-      requiredTime
-      updatedAt
-    }
-  }
-`;
 export const fetchClientsByPhaseStatus = /* GraphQL */ `
   query FetchClientsByPhaseStatus($phaseStatus: String!) {
     fetchClientsByPhaseStatus(phaseStatus: $phaseStatus) {
@@ -244,6 +245,25 @@ export const fetchClientsByPhaseStatus = /* GraphQL */ `
     }
   }
 `;
+export const fetchEventByEventID = /* GraphQL */ `
+  query FetchEventByEventID($eventID: ID!) {
+    fetchEventByEventID(eventID: $eventID) {
+      clientID
+      createdAt
+      deletedAt
+      editedUserID
+      eventCountNumber
+      eventDate
+      eventDetail
+      eventID
+      eventMemo
+      eventNumberStatus
+      eventStatus
+      eventTerm
+      updatedAt
+    }
+  }
+`;
 export const fetchEventsByClientID = /* GraphQL */ `
   query FetchEventsByClientID($clientID: ID!) {
     fetchEventsByClientID(clientID: $clientID) {
@@ -251,11 +271,12 @@ export const fetchEventsByClientID = /* GraphQL */ `
       createdAt
       deletedAt
       editedUserID
+      eventCountNumber
       eventDate
       eventDetail
       eventID
       eventMemo
-      eventNumber
+      eventNumberStatus
       eventStatus
       eventTerm
       updatedAt
@@ -269,11 +290,12 @@ export const fetchEventsByEditedUserID = /* GraphQL */ `
       createdAt
       deletedAt
       editedUserID
+      eventCountNumber
       eventDate
       eventDetail
       eventID
       eventMemo
-      eventNumber
+      eventNumberStatus
       eventStatus
       eventTerm
       updatedAt
@@ -292,6 +314,23 @@ export const fetchMyUserMast = /* GraphQL */ `
       updatedAt
       userID
       userStatus
+    }
+  }
+`;
+export const fetchPhaseByPhaseID = /* GraphQL */ `
+  query FetchPhaseByPhaseID($phaseID: ID!) {
+    fetchPhaseByPhaseID(phaseID: $phaseID) {
+      clientID
+      createdAt
+      deletedAt
+      editedUserID
+      phaseDate
+      phaseDetail
+      phaseID
+      phaseNumber
+      phaseStatus
+      phaseTerm
+      updatedAt
     }
   }
 `;

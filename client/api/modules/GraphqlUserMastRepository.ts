@@ -1,6 +1,8 @@
 import { IUserMastRepository, UserMast } from 'chillnn-sfa-abr'
 import { callApi } from '../base'
 import {
+    DeleteUserMastMutation,
+    DeleteUserMastMutationVariables,
     FetchAllUserQuery, //
     FetchMyUserMastQuery,
     FetchUserMastByUserIDQuery,
@@ -25,6 +27,17 @@ class GraphqlUserMastRepository implements IUserMastRepository {
                 input,
             })
         ).updateUserMast
+    }
+
+    async deleteUserMast(userID: string): Promise<UserMast> {
+        return (
+            await callApi<
+                DeleteUserMastMutation,
+                DeleteUserMastMutationVariables
+            >(mutation.deleteUserMast, {
+                userID,
+            })
+        ).deleteUserMast
     }
 
     async fetchMyUserMast(): Promise<UserMast | null> {
