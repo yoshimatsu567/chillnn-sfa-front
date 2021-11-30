@@ -16,6 +16,7 @@
               <div>
                 <img class="delete_phase_img_style" @click="deletePhaseTitle(phaseTitle)" width="10" src="~/assets/img/cross.svg" />
               </div>
+              <!-- ホゲホゲ -->
               <div class="phaseTitle_inner">
                 <div>
                   Phase : {{ phaseTitle.phaseNumber }}
